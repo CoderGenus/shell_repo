@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * *append_node_end - appends a node to the end of the list
+ * *append_node - appends a node to the end of the list
  * @head: pointer to head node
  * @str: string of node
  * @index: node index
@@ -9,7 +9,7 @@
  *
  */
 
-list_t *append_node_end(list_t **head, const char *str, int index)
+list_t *append_node(list_t **head, const char *str, int index)
 {
 	list_t *brand_node;
 	list_t *node;

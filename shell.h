@@ -208,7 +208,7 @@ int reindex_history(note_t *);
 
 /* shell_list */
 list_t *add_node(list_t **, const char *, int);
-list_t *append_node_end(list_t **, const char *, int);
+list_t *append_node(list_t **, const char *, int);
 size_t display_list_str(const list_t *);
 int remove_node_at_index(list_t **, unsigned int);
 void free_list(list_t **);
@@ -223,8 +223,8 @@ ssize_t get_node_position(list_t *, list_t *);
 /* shell_variables.c */
 int is_chain(note_t *, char *, size_t *);
 void check_chain(note_t *, char *, size_t *, size_t, size_t);
-int ressolve_alias(note_t *);
-int ressolve_vars(note_t *);
-int ressolve_string(char **, char *);
+int resolve_alias(note_t *);
+int resolve_vars(note_t *);
+int resolve_string(char **, char *);
 
 #endif
