@@ -46,9 +46,9 @@ int hsh(note_t *note, char **av)
  * search_builtin - searches for a builtin command
  * @note: reutrn struct
  * Return: -1 if builtin not found,
- * 	0 if builtin exectued successfully
- * 	1 if builtin found but not successful
- * 	-2 if builtin signals exit
+ *	0 if builtin exectued successfully
+ *	1 if builtin found but not successful
+ *	-2 if builtin signals exit
  */
 int search_builtin(note_t *note)
 {
@@ -79,7 +79,7 @@ int search_builtin(note_t *note)
  * search_cmd - find a commandin PATH
  * @note: return struct
  */
-void search_cmd(note_t *node)
+void search_cmd(note_t *note)
 {
 	int i, j;
 	char *path = NULL;
@@ -104,7 +104,7 @@ void search_cmd(note_t *node)
 	else
 	{
 		if ((is_interactive(note) || _getenv(note, "PATH=")
-					|| note->argv[0][0] == '/') && 
+					|| note->argv[0][0] == '/') &&
 				is_cmd(note, note->argv[0]))
 			fork_cmd(note);
 		else if (*(note->arg) != '\n')
