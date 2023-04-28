@@ -40,8 +40,12 @@ int set_alias(note_t *note, char *p_str)
 	char *f;
 
 	f = _strchr(p_str, '=');
+<<<<<<< HEAD
 
 	if (f == NULL)
+=======
+	if (!f)
+>>>>>>> 79c21b3296715902c8a6394600c70e6815593217
 	{
 		return (1);
 	}

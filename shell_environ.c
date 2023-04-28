@@ -75,11 +75,11 @@ int _myunsetenv(note_t *note)
  */
 int build_env_list(note_t *note)
 {
-	list_t *n = NULL;
+	list_t *nod = NULL;
 	size_t n;
 
 	for (n = 0; environ[n]; n++)
-		append_node(&n, environ[n], 0);
-	note->env = n;
+		append_node(&nod, environ[n], 0);
+	note->env = nod;
 	return (0);
 }
