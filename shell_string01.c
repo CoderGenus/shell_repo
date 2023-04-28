@@ -12,13 +12,13 @@ char *_strcat(char *final, char *origin)
 {
 	char *c = final;
 
-	while (*c != '\0')
-		c++;
+	while (*final != '\0')
+		final++;
 
-	while (origin != '\0')
-		*c++ = *origin++;
-	*c = '\0';
-	return (final);
+	while (*origin != '\0')
+		*final++ = *origin++;
+	*final = *origin;
+	return (c);
 }
 
 /**

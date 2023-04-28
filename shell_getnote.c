@@ -15,7 +15,7 @@ void set_note(note_t *note, char **arg_v)
 	note->filename = arg_v[0];
 	if (note->arg != 0)
 	{
-		note->argv = strtow(note->arg, " \t");
+		note->argv = strtok(note->arg, " \t");
 		if (note->argv == NULL)
 		{
 			note->argv = malloc(sizeof(char *) * 2);
@@ -53,8 +53,8 @@ void free_note(note_t *note, int every)
 			free(note->arg);
 		if (!note->env)
 			free_list(&(note->env));
-		if (note->hist)
-			free_list(&(note->hist));
+		if (note->history)
+			free_list(&(note->history));
 		if (note->alias)
 			free_list(&(note->alias));
 		free_str(note->environ);

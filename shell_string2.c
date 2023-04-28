@@ -10,12 +10,12 @@ int is_delim(char d, char *meteD)
 {
 	while (*meteD)
 	{
-		if (*meteD++ == c)
+		if (*meteD++ == d)
 		{
 			return (1);
 		}
-		return (0);
 	}
+	return (0);
 }
 
 /**
@@ -73,7 +73,8 @@ char *_strncpy(char *dest, char *origin, int a)
 
 char *_strncat(char *dest, char *origin, int n)
 {
-	char *p = desti;
+	char *p = dest;
+	int i;
 
 	while (*p != '\0')
 	{

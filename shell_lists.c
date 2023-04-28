@@ -36,11 +36,14 @@ list_t *append_node(list_t **head, const char *str, int index)
 	{
 		while (node->next)
 			node = node->next;
-		node->next = new_node;
+		node->next = brand_node;
 	}
 	else
+	{
 		*head = brand_node;
 	return (new_node);
+	}
+	return (0);
 }
 
 /**
@@ -54,24 +57,22 @@ list_t *append_node(list_t **head, const char *str, int index)
 
 list_t *add_node(list_t **head, const char *str, int index)
 {
-	list_t *new_node = (node_t *)malloc(sizeof(node_t));
+	list_t *new_node = (note_t *) malloc(sizeof(node_t));
 
 	if (new_node == NULL)
 	{
 		return (NULL);		/* Unable to allocate memory */
 	}
-
-	/* Allocate memory for string */
-
-	new_node->str = (char *)malloc(strlen(str) + 1);
-	if (new_node->str == NULL)
-	{
-		free(new_node);
-		return (NULL);
-	}
-
-	_strcpy(new_node->str, str);
+	_memset((void *)new_node, 0 sizeof(list_t));
 	new_node->index = index;
+	if (str)
+	{
+		new node->str = _strdup(str);
+		if (new_node->str == NULL)
+		{
+			free(new_node);
+			return (NULL);
+		}
 
 	/* Set new node as head of linked list */
 
@@ -80,7 +81,7 @@ list_t *add_node(list_t **head, const char *str, int index)
 
 	/* Return pointer to linked list */
 
-	return (*head);
+	return (new_node);
 }
 
 /**
@@ -95,7 +96,7 @@ size_t display_list_str(const list_t *q)
 
 	while (q != NULL)
 	{
-		_puts(q->str : "(nil)");
+		_puts(q->str ? q->str : "(nil)");
 		_puts("\n");
 		q = q->next;
 		poi++;
@@ -114,7 +115,7 @@ void free_list(list_t **head_add)
 	list_t *node, *next_node, *head;
 
 	if (!head_add || !*head_add)
-		return (0);
+		return;
 	head = *head_add;
 	node = head;
 	while (node)
