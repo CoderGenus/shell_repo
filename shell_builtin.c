@@ -13,7 +13,7 @@ int _myexit(note_t *note)
 
 		if (exit_code == -1)
 		{
-			note->ststus = 2;
+			note->status = 2;
 			print_error(note, "Illegal number: ");
 			_eputs(note->argv[1]);
 			_eputchar('\n');
@@ -46,8 +46,7 @@ int _mycd(note_t *note)
 			dir = _getenv(note, "PWD=");
 			ret = chdir(dir ? dir : "/");
 		}
-		else
-			ret = chdir(dir);
+		ret = chdir(dir);
 	}
 	else if (_strcmp(note->argv[1], "-") == 0)
 	{
@@ -55,14 +54,12 @@ int _mycd(note_t *note)
 		{
 			_puts(current_dir);
 			_putchar('\n');
-			return (1);
 		}
 		_puts(_getenv(note, "OLDPWD="));
 		_putchar('\n');
 		ret = chdir((_getenv(note, "OLDPWD=")) ? _getenv(note, "OLDPWD=") : "/");
 	}
-	else
-		ret = chdir(note->argv[1]);
+	ret = chdir(note->argv[1]);
 	if (ret == -1)
 	{
 		print_error(note, "can't cd to");
@@ -72,7 +69,7 @@ int _mycd(note_t *note)
 	else
 	{
 		_setenv(note, "OLDPWD", _getenv(note, "PWD="));
-		_setenv(not, "PWD", getcwd(buffer, 1024));
+		_setenv(note, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);
 }
@@ -89,16 +86,5 @@ int _myhelp(note_t *note)
 	_puts("the help call works but but the function is not implemented \n");
 	if (0)
 		_puts(*arr);
-	return (0);
-}
-
-/**
- * _myhistory - displays the history list
- * @note: structure containing argument
- * Return: always 0
- */
-int _myhistory(note_t *note)
-{
-	print_list(note->history);
 	return (0);
 }

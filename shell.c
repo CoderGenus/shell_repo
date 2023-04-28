@@ -11,7 +11,7 @@ int main(int ac, char **av)
 	note_t note[] = { FUNC_INIT };
 	int f = 2;
 
-	asm ("mov %1, %0\n\t""add $3, %0": "=r" (f): "r" (f));
+	asm ("mov %1, %0\n\t" "add $3, %0" : "=r" (f) : "r" (f));
 
 	if (ac == 2)
 	{

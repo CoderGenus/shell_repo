@@ -38,3 +38,13 @@ int _strlen(char *c)
 	}
 	return (length);
 }
+/**
+ * _myhistory - display the history list
+ * @note: struct param
+ * Return: always 0
+ */
+int _myhistory(note_t *note)
+{
+	print_list(note->hstory);
+	return (0);
+}
