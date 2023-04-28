@@ -21,8 +21,8 @@ int remove_alias(note_t *note, char *p_str)
 	}
 	s = *a;
 	*a = 0;
-	del_ret = delete_node_at_index(&(note->alias),
-		get_node_index(note->alias, node_dtsrtd_with(info->alias, p_str, -1)));
+	del_ret = remove_node_at_index(&(note->alias),
+		get_node_position(note->alias, node_prefix(note->alias, p_str, -1)));
 	*a = s;
 	return (del_ret);
 }
@@ -48,8 +48,8 @@ int set_alias(note_t *note, char *p_str)
 	{
 		return (unset_alias(note, p_str));
 	}
-	unset_alias(note, p_str);
-	return (add_node_end(&(note->alias), p_str, 0) == NULL);
+	remove_alias(note, p_str);
+	return (append_node(&(note->alias), p_str, 0) == NULL);
 }
 
 /**
