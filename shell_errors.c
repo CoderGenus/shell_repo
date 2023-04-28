@@ -46,7 +46,7 @@ int _putfd(char s, int fd)
 
 	if (s == FLUSH_BUFFER || x >= WRITE_BUFFER)
 	{
-		write(fd, buf, x)
+		write(fd, buf, x);
 			x = 0;
 	}
 	if (s != FLUSH_BUFFER)

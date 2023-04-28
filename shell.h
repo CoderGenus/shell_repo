@@ -174,7 +174,7 @@ int _myhistory(note_t *);
 /* shell_alias */
 int remove_alias(note_t *, char *);
 int set_alias(note_t *, char *);
-int print_alias(note_t *);
+int print_alias(list_t *);
 int _myalias(note_t *);
 
 /* shell_getline */

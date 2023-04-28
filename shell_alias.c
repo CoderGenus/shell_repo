@@ -39,14 +39,14 @@ int set_alias(note_t *note, char *p_str)
 {
 	char *f;
 
-	f = _strchr(str, '=');
-	if (f == NULL)
+	f = _strchr(p_str, '=');
+	if (!f)
 	{
 		return (1);
 	}
-	if (*++f == NULL)
+	if (!*++f)
 	{
-		return (unset_alias(note, p_str));
+		return (remove_alias(note, p_str));
 	}
 	remove_alias(note, p_str);
 	return (append_node(&(note->alias), p_str, 0) == NULL);
@@ -64,18 +64,18 @@ int print_alias(list_t *fud)
 	char *equal_sign = NULL;
 	char *x = NULL;
 
-	if (node == NULL)
+	if (fud == NULL)
 	{
 		return (1);
 	}
 	else
 	{
-		*equal_sign = _strchr(fud->str, '=');
+		equal_sign = _strchr(fud->str, '=');
 		for (x = fud->str; x <= equal_sign; x++)
 			_putchar(*x);
 		_putchar('\'');
 		_putchar(' ');
-		_puts(p + 1);
+		_puts(equal_sign + 1);
 		_putchar('\n');
 		return (0);
 	}

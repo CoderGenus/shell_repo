@@ -11,7 +11,7 @@ int _erratoi(char *str)
 	unsigned long int number = 0;
 
 	if (*str == '+')
-		s++;
+		str++;
 
 	for (n = 0; str[n] != '\0'; n++)
 	{

@@ -14,30 +14,30 @@ int _setenv(note_t *note, char *varab, char *val)
 {
 	list_t *nod;
 	char *new_var = NULL;
-	char b;
+	char *b;
+	size_t var_len = _strlen(varab);
+	size_t val_len = _strlen(val);
 
 	if (varab == NULL || val == NULL)
 	{
 		return (-1);
 	}
 
-	size_t var_len = _strlen(varab);
-	size_t val_len = _strlen(val);
-	char *new_var = (char *) malloc(var_len + 1 + val_len + 1);
+	new_var = (char *) malloc(var_len + 1 + val_len + 1);
 
 	if (new_var == NULL)
 	{
 		return (-1);
 	}
 
-	_strcpy(new_var, var);
+	_strcpy(new_var, val);
 	_strcat(new_var, "=");
-	_strcat(new_var, value);
-	node = note->env;
+	_strcat(new_var, val);
+	nod = note->env;
 
 	while (nod != NULL)
 	{
-		b = is_prefix(node->str, varab);
+		b = is_prefix(nod->str, varab);
 		if (b && *b == '=')
 		{
 			free(nod->str);
@@ -45,11 +45,11 @@ int _setenv(note_t *note, char *varab, char *val)
 			note->environ_changed = 1;
 			return (0);
 		}
-		node = node->next;
+		nod = nod->next;
 	}
 	append_node(&(note->env), new_var, 0);
 	free(new_var);
-	note->environ->changed = 1;
+	note->environ_changed = 1;
 	return (0);
 }
 
@@ -64,11 +64,11 @@ char **get_environ(note_t *note)
 {
 	if (note->environ == NULL || note->environ_changed != 0)
 	{
-		note->environ = list_to str(note->env);
+		note->environ = list_to_str(note->env);
 		note->environ_changed = 0;
 	}
 
-	return (note->envirom);
+	return (note->environ);
 }
 
 /**
@@ -97,11 +97,11 @@ int _unsetenv(note_t *note, char *varab)
 		{
 			note->environ_changed = remove_node_at_index(&(note->env), i);
 			i = 0;
-			ext = ext->env;
+			ext = note->env;
 			continue;
 		}
 		ext = ext->next;
 		i++;
 	}
-	return (note->environ_changes);
+	return (note->environ_changed);
 }
