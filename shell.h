@@ -33,7 +33,7 @@
 #define FILE_HISTORY	".simple_shell_history"
 #define MAX_HISTORY	4095
 
-extern char **environ
+extern char **environ;
 
 /**
  * struct list_s - singly linked list
@@ -143,7 +143,7 @@ int _putchar(char);
 int print_dec(int, int);
 
 /*shell_string2.c */
-char *strncpy(char *, char *, int);
+char *_strncpy(char *, char *, int);
 char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
 int is_delim(char, char *);
@@ -196,7 +196,7 @@ int build_env_list(note_t *);
 
 /* shell environ1.c */
 char **get_environ(note_t *);
-int _unsetenv(note_t *, chsr *);
+int _unsetenv(note_t *, char *);
 int _setenv(note_t *, char *, char *);
 
 /*shell_history */

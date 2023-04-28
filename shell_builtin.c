@@ -47,9 +47,7 @@ int _mycd(note_t *note)
 			ret = chdir(dir ? dir : "/");
 		}
 		else
-		{
 			ret = chdir(dir);
-		}
 	}
 	else if (_strcmp(note->argv[1], "-") == 0)
 	{
@@ -64,10 +62,7 @@ int _mycd(note_t *note)
 		ret = chdir((_getenv(note, "OLDPWD=")) ? _getenv(note, "OLDPWD=") : "/");
 	}
 	else
-	{
 		ret = chdir(note->argv[1]);
-	}
-	
 	if (ret == -1)
 	{
 		print_error(note, "can't cd to");
@@ -81,7 +76,6 @@ int _mycd(note_t *note)
 	}
 	return (0);
 }
-
 /**
  * _myhelp - changes the current dir
  * @note: structure containing argument
