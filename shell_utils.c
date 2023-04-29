@@ -8,7 +8,7 @@
 
 int _myatoi(char *a)
 {
-	int i;
+	int i = 0;
 	int sign = 1;
 	int note = 0;
 	int give;
@@ -16,7 +16,7 @@ int _myatoi(char *a)
 
 	if (a[i] == ' ')
 	{
-		i++
+		i++;
 	}
 
 	for (i = 0;  a[i] != '\0' && note != 2; i++)
@@ -34,7 +34,7 @@ int _myatoi(char *a)
 		{
 			note = 1;
 			result = result * 10 + (a[i] - '0');
-			i++
+			i++;
 		}
 		else if (note == 1)
 		{
@@ -56,7 +56,7 @@ int _myatoi(char *a)
  */
 int is_interactive(note_t *notice)
 {
-	return (isatty(fileno(stdin)) && info->readfd <= 2);
+	return (isatty(fileno(stdin)) && notice->readfd <= 2);
 }
 
 /**

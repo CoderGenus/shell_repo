@@ -40,7 +40,8 @@ int set_alias(note_t *note, char *p_str)
 	char *f;
 
 	f = _strchr(p_str, '=');
-	if (!f)
+
+	if (f == NULL)
 	{
 		return (1);
 	}
@@ -79,5 +80,38 @@ int print_alias(list_t *fud)
 		_putchar('\n');
 		return (0);
 	}
+	return (0);
+}
+
+/**
+ * _myalias - mimics the alias builtin (man alias)
+ * @note: Structure containing potential arguments.
+ *  Return: Always 0
+ */
+int _myalias(note_t *note)
+{
+	int i = 0;
+	char *d = NULL;
+	list_t *node = NULL;
+
+	if (note->argc == 1)
+	{
+		node = note->alias;
+		while (node)
+		{
+			print_alias(node);
+			node = node->next;
+		}
+		return (0);
+	}
+	for (i = 1; note->argv[i]; i++)
+	{
+		d = _strchr(note->argv[i], '=');
+		if (d)
+			set_alias(note, note->argv[i]);
+		else
+			print_alias(node_prefix(note->alias, note->argv[i], '='));
+	}
+
 	return (0);
 }

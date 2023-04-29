@@ -9,16 +9,14 @@
 
 char *is_prefix(const char *haystack, const char *needle)
 {
-	int is_prefix(const char *haystack, const char *needle)
+	while (*haystack && *needle)
 	{
-		while (*haystack && *needle)
+		if (*haystack++ != *needle++)
 		{
-			if (*haystack++ != *needle++)
-			{
-				return (0);
-			}
+			return (0);
 		}
-		return (!*needle);
+	}
+	return ((char*)haystack);
 }
 
 /**
@@ -45,6 +43,6 @@ int _strlen(char *c)
  */
 int _myhistory(note_t *note)
 {
-	print_list(note->hstory);
+	print_list(note->history);
 	return (0);
 }

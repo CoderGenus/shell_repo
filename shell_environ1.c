@@ -15,22 +15,20 @@ int _setenv(note_t *note, char *varab, char *val)
 	list_t *nod;
 	char *new_var = NULL;
 	char *b;
-	size_t var_len = _strlen(varab);
-	size_t val_len = _strlen(val);
-
+	
 	if (varab == NULL || val == NULL)
 	{
 		return (-1);
 	}
 
-	new_var = (char *) malloc(var_len + 1 + val_len + 1);
+	new_var = malloc(_strlen(varab) + 1 + _strlen(val) + 1);
 
 	if (new_var == NULL)
 	{
 		return (-1);
 	}
 
-	_strcpy(new_var, val);
+	_strcpy(new_var, varab);
 	_strcat(new_var, "=");
 	_strcat(new_var, val);
 	nod = note->env;
@@ -62,13 +60,15 @@ int _setenv(note_t *note, char *varab, char *val)
 
 char **get_environ(note_t *note)
 {
-	if (note->environ == NULL || note->environ_changed != 0)
 	{
-		note->environ = list_to_str(note->env);
-		note->environ_changed = 0;
+		if (note->environ == NULL || note->environ_changed != 0)
+		{
+			note->environ = list_to_str(note->env);
+			note->environ_changed = 0;
+		}
+		return (note->environ);
 	}
-
-	return (note->environ);
+	return (NULL);
 }
 
 /**

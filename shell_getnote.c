@@ -15,7 +15,11 @@ void set_note(note_t *note, char **arg_v)
 	note->filename = arg_v[0];
 	if (note->arg != 0)
 	{
+<<<<<<< HEAD
 		note->argv = split_string(note->arg, " \t");
+=======
+		note->argv = strtok(note->arg, " \t");
+>>>>>>> f074dab0e685f83569d5dca556fa1d7160970375
 		if (note->argv == NULL)
 		{
 			note->argv = malloc(sizeof(char *) * 2);

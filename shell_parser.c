@@ -61,7 +61,7 @@ char *search_path(note_t *note, char *pathstr, char *cmd)
 				return (path);
 			if (!pathstr[i])
 				break;
-			pre_pos = i;
+			pres_pos = i;
 		}
 		i++;
 	}

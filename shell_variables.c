@@ -9,14 +9,14 @@
 int resolve_vars(note_t *note)
 {
 	int i = 0;
-	note_t *node;
+	list_t *node;
 
 	for (i = 0; note->argv[i]; i++)
 	{
 		if (note->argv[i][0] != '$' || !note->argv[i][1])
 			continue;
 
-		if (!_strcmp(info->argv[i], "$?"))
+		if (!_strcmp(note->argv[i], "$?"))
 		{
 			resolve_string(&(note->argv[i]),
 				_strdup(conv_num(note->status, 10, 0)));
@@ -56,7 +56,7 @@ int is_chain(note_t *note, char *buffer, size_t *p)
 
 	if (buffer[i] == '|' && buffer[i + 1] == '|')
 	{
-		buffer[j] = 0;
+		buffer[i] = 0;
 		i++;
 		note->cmd_buffer_type = OR_CMD;
 	}
@@ -69,7 +69,7 @@ int is_chain(note_t *note, char *buffer, size_t *p)
 	else if (buffer[i] == ';') /* found end of this command */
 	{
 		buffer[i] = 0; /* replace semicolon with null */
-		note->cmd_buffer_type = CHAIN_CHAIN;
+		note->cmd_buffer_type = CHAIN_CMD;
 	}
 	else
 		return (0);
@@ -87,7 +87,7 @@ int resolve_alias(note_t *note)
 {
 	int i;
 	list_t *node;
-	char b;
+	char *b;
 
 	for (i = 0; i < 10; i++)
 	{
@@ -98,7 +98,7 @@ int resolve_alias(note_t *note)
 		b = _strchr(node->str, '=');
 		if (!b)
 			return (0);
-		b = _strdup(p + 1);
+		b = _strdup(b + 1);
 		if (!b)
 			return (0);
 		note->argv[0] = b;
