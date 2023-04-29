@@ -162,7 +162,7 @@ int free_ptr(void **);
 /* shell_utils.c */
 int is_interactive(note_t *);
 char *conv_num(long int, int, int);
-void del_comments(char *);
+char *del_comments(char *);
 int _myatoi(char *);
 
 /* shell_builtin.c */

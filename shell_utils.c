@@ -101,22 +101,31 @@ char *conv_num(long int digit, int origin, int flags)
  * del_comments - function that replaces first instance of '#' with '\0'
  * @str: pointer to thestring to be modified
  *
- * Return: Nothing.
+ * Return: input without comments
  */
 
-void del_comments(char *str)
+char *del_comments(char *str)
 {
-	int i;
-	int com_start = -1;
+	int i, point;
 
-	for (i = 0; str[i] != '\0'; i++)
-		if (str[i] == '#' && (i == 0 || str[i - 1] == ' '))
-		{
-			com_start = i;
-			break;
-		}
-	if (com_start != -1)
+	point = 0;
+	for (i = 0; str[i]; i++)
 	{
-		str[com_start] = '\0';
+		if (str[i] == '#')
+		{
+			if (i == 0)
+			{
+				free(str);
+				return (NULL);
+			}
+			if (str[i - 1] == ' ' || str[i - 1] == '\t' || str[i - 1] == ';')
+				point = i;
+		}
 	}
+	if (point != 0)
+	{
+		str = _realloc(str, i, point + 1);
+		str[point] = '\0';
+	}
+	return (str);
 }
