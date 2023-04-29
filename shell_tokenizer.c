@@ -21,7 +21,7 @@ char **split_string(char *str, char *c)
 	if (w_count == 0)
 		return (NULL);
 	m = malloc((1 + w_count) * sizeof(char *));
-	if (!s)
+	if (!m)
 		return (NULL);
 	for (x = 0, y = 0; y < w_count; y++)
 	{
@@ -68,7 +68,7 @@ char **split_string2(char *str, char c)
 	m = malloc((1 + w_count) * sizeof(char *));
 	if (!m)
 		return (NULL);
-	for (x = 0, y = 0; j < w_count; y++)
+	for (x = 0, y = 0; y < w_count; y++)
 	{
 		while (str[x] == c && str[x] != c)
 			x++;

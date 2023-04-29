@@ -57,11 +57,8 @@ list_t *append_node(list_t **head, const char *str, int index)
 
 list_t *add_node(list_t **head, const char *str, int index)
 {
-<<<<<<< HEAD
 	list_t *new_node = malloc(sizeof(list_t));
-=======
-	list_t *new_node = (list_t *) malloc(sizeof(list_t));
->>>>>>> f074dab0e685f83569d5dca556fa1d7160970375
+	/*list_t *new_node = (list_t *) malloc(sizeof(list_t));*/
 
 	if (new_node == NULL)
 	{

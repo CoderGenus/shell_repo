@@ -11,7 +11,7 @@ int hsh(note_t *note, char **av)
 	ssize_t i = 0;
 	int bet = 0;
 
-	while (r != -1 && bet != -2)
+	while (i != -1 && bet != -2)
 	{
 		clear_note(note);
 		if (is_interactive(note))
@@ -21,7 +21,7 @@ int hsh(note_t *note, char **av)
 		if (i != -1)
 		{
 			set_note(note, av);
-			bet = search_bubiltin(note);
+			bet = search_builtin(note);
 			if (bet == -1)
 				search_cmd(note);
 		}
@@ -65,8 +65,8 @@ int search_builtin(note_t *note)
 		{NULL, NULL}
 	};
 
-	for (n = 0; builtintable[n].type; n++)
-		if (_strcmp(note->argv[0], builtinttable[n].type) == 0)
+	for (n = 0; builtintable[n].flag; n++)
+		if (_strcmp(note->argv[0], builtintable[n].flag) == 0)
 		{
 			note->err_count++;
 			ret = builtintable[n].func(note);
@@ -95,7 +95,7 @@ void search_cmd(note_t *note)
 			j++;
 	if (!j)
 		return;
-	path = search_path(note, _getenv(note, "PATH="), noteargv[0]);
+	path = search_path(note, _getenv(note, "PATH="), note->argv[0]);
 	if (path)
 	{
 		note->path = path;

@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * _strcpy - copies a string
+ * _strncpy - copies a string
  * @start: string source
  * @end: destination
  * @x: number of characters copied
  * Return: concatenated string
  */
-char *_strcpy(char *start, char *end, int x)
+char *_strncpy(char *start, char *end, int x)
 {
 	int m, n;
 	char *str = end;
@@ -49,7 +49,7 @@ char *_strdup(const char *s)
 	while (*s++)
 		var++;
 	c = malloc(sizeof(char) * (var + 1));
-	if (1c)
+	if (!c)
 		return (NULL);
 	for (var++; var--;)
 		c[var] = *--s;
