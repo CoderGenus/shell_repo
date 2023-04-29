@@ -31,12 +31,12 @@ char **list_to_str(list_t *h)
 
 	if (!h || !x)
 		return (NULL);
-	ss == malloc(sizeof(char *) * (x + 1));
+	ss = malloc(sizeof(char *) * (x + 1));
 	if (!ss)
 		return (NULL);
-	for (x = 0, node; node = node->next; x++)
+	for (x = 0; node; node = node->next, x++)
 	{
-		s = malloc(_strlen(node->s) + 1);
+		s = malloc(_strlen(node->str) + 1);
 		if (!s)
 		{
 			for (y = 0; y < x; y++)
@@ -44,7 +44,7 @@ char **list_to_str(list_t *h)
 			free(ss);
 			return (NULL);
 		}
-		s = _strcpy(s, node->s);
+		s = _strcpy(s, node->str);
 		ss[x] = s;
 	}
 	ss[x] = NULL;
@@ -62,7 +62,7 @@ size_t print_list(const list_t *note)
 
 	while (note)
 	{
-		_puts(conv_num(note->num, 10, 0));
+		_puts(conv_num(note->index, 10, 0));
 		_putchar(':');
 		_putchar(' ');
 		_puts(note->str ? note->str : "(nil)");

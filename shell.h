@@ -161,7 +161,7 @@ int free_ptr(void **);
 
 /* shell_utils.c */
 int is_interactive(note_t *);
-char *conv_num(long int, int, int, int);
+char *conv_num(long int, int, int);
 void del_comments(char *);
 int _myatoi(char *);
 
@@ -184,7 +184,7 @@ void sigint_handler(int);
 
 /* shell_getnote */
 void clear_note(note_t *);
-void set_note(note_t *, int);
+void set_note(note_t *, char **);
 void free_note(note_t *, int);
 
 /* shell_environ */

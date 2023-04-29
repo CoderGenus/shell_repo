@@ -36,7 +36,7 @@ list_t *append_node(list_t **head, const char *str, int index)
 	{
 		while (node->next)
 			node = node->next;
-		node->next = new_node;
+		node->next = brand_node;
 	}
 	else
 		*head = brand_node;
@@ -54,7 +54,7 @@ list_t *append_node(list_t **head, const char *str, int index)
 
 list_t *add_node(list_t **head, const char *str, int index)
 {
-	list_t *new_node = (node_t *)malloc(sizeof(node_t));
+	list_t *new_node = malloc(sizeof(list_t));
 
 	if (new_node == NULL)
 	{

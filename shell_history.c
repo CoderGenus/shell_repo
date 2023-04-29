@@ -35,7 +35,7 @@ int rec_history(note_t *note)
 
 	if (!fn)
 		return (-1);
-	f = open(fn, O_CREATE | O_TRUNC | O_RDWR, 0644);
+	f = open(fn, O_CREAT | O_TRUNC | O_RDWR, 0644);
 	free(fn);
 	if (f == -1)
 		return (-1);
@@ -59,7 +59,7 @@ int rd_hist(note_t *note)
 {
 	int i, n = 0, count = 0;
 	ssize_t f, len, size = 0;
-	char *buffer = NULL, *fn = ret_history_file(note);
+	char *buffer = NULL, *fn = ret_hist_file(note);
 	struct stat st;
 
 	if (!fn)
@@ -130,7 +130,7 @@ int reindex_history(note_t *note)
 
 	while (n)
 	{
-		n->num = x++;
+		n->index = x++;
 		n = n->next;
 	}
 	return (note->hist_count = x);

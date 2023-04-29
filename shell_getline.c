@@ -20,7 +20,7 @@ ssize_t input_buffer(note_t *note, char **buffer, size_t *var)
 #if GETLINE
 		s = getline(buffer, &p, stdin);
 #else
-		s = _getline(note, buffer, p);
+		s = _getline(note, buffer, &p);
 #endif
 		if (s > 0)
 		{
@@ -31,10 +31,10 @@ ssize_t input_buffer(note_t *note, char **buffer, size_t *var)
 			}
 			note->line_count_flag = 1;
 			del_comments(*buffer);
-			append_hist_list(note, *buffer, note->host_count++);
+			append_hist_list(note, *buffer, note->hist_count++);
 			/* if (_strchr(*buf, ';')) is this a command chain? */
 			{
-				*var = r;
+				*var = s;
 				note->cmd_buffer = buffer;
 			}
 		}
@@ -55,7 +55,7 @@ ssize_t read_input(note_t *note)
 	static char *buffer;
 
 	_putchar(FLUSH_BUFFER);
-	S = input_buffer(note, &buffer, &var);
+	s = input_buffer(note, &buffer, &var);
 	if (s == -1)
 		return (-1);
 	if (var)
@@ -111,7 +111,7 @@ ssize_t read_buffer(note_t *note, char *buffer, size_t *s)
  * @var: size of preallocated ptr
  * Return: size
  */
-int _getline(note_t *note, char *ptr, size_t *var)
+int _getline(note_t *note, char **ptr, size_t *var)
 {
 	char *p = NULL, *new_ptr = NULL, *cm;
 	static size_t i, length;
@@ -127,13 +127,13 @@ int _getline(note_t *note, char *ptr, size_t *var)
 	x = read_buffer(note, buffer, &length);
 	if (x == -1 || (x == 0 && length == 0))
 		return (-1);
-	cm = _strchr(buffer + i. '\n');
+	cm = _strchr(buffer + i, '\n');
 	j = cm ? 1 + (unsigned int)(cm - buffer) : length;
 	new_ptr = _realloc(p, y, y ? y + j : j + 1);
 	if (!new_ptr)
 		return (p ? free(p), -1 : -1);
 	if (y)
-		_strcat(new_ptr, buffer + i, j - i);
+		_strncat(new_ptr, buffer + i, j - i);
 	else
 		_strncpy(new_ptr, buffer + i, j - i + 1);
 	y += j - i;
