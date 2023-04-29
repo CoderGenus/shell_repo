@@ -4,20 +4,21 @@
  * _strncpy - copies a string
  * @start: string source
  * @end: destination
- * @x: number of characters copied
  * Return: concatenated string
  */
-char *_strncpy(char *start, char *end, int x)
+char *_strcpy(char *start, char *end)
 {
-	int m, n;
-	char *str = end;
+	int m;
 
-	for (m = 0; start[m] != '\0' && m < x - 1; m++)
+	if (end == start || start == 0)
+		return (end);
+	while (start[m])
+	{
 		end[m] = start[m];
-	if (m < x)
-		for (n = m; n < x; n++)
-			end[n] = '\0';
-	return (str);
+		m++;
+	}
+	end[m] = 0;
+	return (end);
 }
 
 /**
