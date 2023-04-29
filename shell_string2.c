@@ -81,8 +81,6 @@ char *_strncat(char *dest, char *origin, int n)
 		p++;
 	}
 
-	int i = 0;
-
 	while (*origin != '\0' && i < n)
 	{
 		*(p++) = *(origin++);

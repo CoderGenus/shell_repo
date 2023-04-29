@@ -8,7 +8,7 @@
 
 int _myatoi(char *a)
 {
-	int i;
+	int i = 0;
 	int sign = 1;
 	int note = 0;
 	int give;

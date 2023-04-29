@@ -16,7 +16,7 @@ char *is_prefix(const char *haystack, const char *needle)
 			return (0);
 		}
 	}
-	return (!*needle);
+	return ((char*)haystack);
 }
 
 /**

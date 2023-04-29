@@ -16,7 +16,7 @@ int resolve_vars(note_t *note)
 		if (note->argv[i][0] != '$' || !note->argv[i][1])
 			continue;
 
-		if (!_strcmp(info->argv[i], "$?"))
+		if (!_strcmp(note->argv[i], "$?"))
 		{
 			resolve_string(&(note->argv[i]),
 				_strdup(conv_num(note->status, 10, 0)));
